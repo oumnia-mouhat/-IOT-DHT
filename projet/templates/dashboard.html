@@ -1,0 +1,105 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>DHT11 — Dernière mesure</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: 100vh;
+      padding: 20px 40px;
+      position: relative;
+    }
+    .card {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    h1 {
+      color: #1a73e8;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #1a73e8;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #155ab6;
+    }
+    .spacer {
+      flex: 1; /* espace vide à droite pour le monitor */
+    }
+    .authors {
+      position: absolute;
+      top: 10px;
+      left: 40px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="authors"> Par :Oumnia Mouhat & Sihame Bensalah</div>
+
+  <div class="card">
+    <h1>Dernière mesure</h1>
+    <p>Température : <span id="temp">--</span> °C</p>
+    <p>Humidité : <span id="hum">--</span> %</p>
+    <p>Horodatage : <span id="time">--</span></p>
+    <button id="refresh">Rafraîchir</button>
+    <p id="status">Prêt.</p>
+  </div>
+  <div class="spacer"></div>
+
+  <script>
+    async function fetchLatest() {
+        try {
+            const res = await fetch("/latest/");
+            if (!res.ok) throw new Error("Pas de données");
+            const data = await res.json();
+
+            document.getElementById("temp").textContent = data.temperature.toFixed(1);
+            document.getElementById("hum").textContent = data.humidity.toFixed(1);
+
+            const options = {
+                timeZone: 'Africa/Casablanca',
+                year: 'numeric', month: 'numeric', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            };
+            document.getElementById("time").textContent = new Date(data.timestamp).toLocaleString('fr-FR', options);
+
+            document.getElementById("status").textContent = "Données à jour !";
+        } catch (err) {
+            document.getElementById("status").textContent = "Erreur : " + err.message;
+        }
+    }
+
+    setInterval(fetchLatest, 10000);
+    document.getElementById("refresh").addEventListener("click", fetchLatest);
+    fetchLatest();
+  </script>
+</body>
+</html>
