@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f4f7;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;         /* plus d'espace entre les cards */
+    margin-top: 50px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 30px;     /* plus d'espace à l'intérieur */
+    width: 250px;      /* plus large */
+    transition: transform 0.2s; /* petit effet au hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* léger soulèvement au hover */
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.card .value {
+    font-size: 2.5em;  /* texte plus grand */
+    margin: 15px 0;
+}
+
+.card .time {
+    color: #555;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.card button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
+s

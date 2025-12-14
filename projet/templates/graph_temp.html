@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphique Température</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Graphique Température</h1>
+    <canvas id="tempChart" width="600" height="200"></canvas>
+    <br>
+    <button onclick="window.location.href='/'">Retour au Dashboard</button>
+
+    <script src="{% static 'graph_temp.js' %}"></script>
+</body>
+</html>

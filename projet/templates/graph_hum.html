@@ -1,0 +1,17 @@
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphique Humidité</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Graphique Humidité</h1>
+    <canvas id="humChart" width="600" height="200"></canvas>
+    <br>
+    <button onclick="window.location.href='/'">Retour au Dashboard</button>
+
+    <script src="{% static 'graph_hum.js' %}"></script>
+</body>
+</html>
