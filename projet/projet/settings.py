@@ -24,6 +24,7 @@ EMAIL_HOST_USER = "oumniamouhat02@gmail.com" # ⚠️ ton adresse
 EMAIL_HOST_PASSWORD = "oivh kowg wheo yfkq"    # mot de passe d’application Gmail# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
